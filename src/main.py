@@ -3,7 +3,7 @@ import sys
 
 from github import Github
 
-from summarizer.summarizer import dummy_summarize_text
+from summarizer.summarizer import summarize_text
 
 
 def main(repo_name, issue_number, comment_id, token):
@@ -21,10 +21,18 @@ def main(repo_name, issue_number, comment_id, token):
     comments = issue.get_comments()
 
     # コメントをまとめたテキストを作成
-    comments_text = "\n\n".join(comment.body for comment in comments)
+    comments_section = ""
+    for comment in comments:
+        comments_section += f"コメント（{comment.user.login}、投稿日：{comment.created_at.strftime('%Y-%m-%d')}）：\n{comment.body}\n\n"
 
-    # コメントの要約を作成
-    summarized_text = dummy_summarize_text(comments_text)
+    with open("./templates/prompt_template.txt", "r") as f:
+        prompt_template = f.read()
+
+    prompt = prompt_template.format(
+        issue_title=issue.title, comments_section=comments_section
+    )
+    print(prompt)
+    summarized_text = summarize_text(prompt)
 
     # 要約をIssueにコメントとして追加
     issue.create_comment(f"## Summary of Comments\n\n{summarized_text}")

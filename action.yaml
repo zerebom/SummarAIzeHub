@@ -1,4 +1,4 @@
-name: "GitHub Issue Summarizer"
+name: "SummarAIzeHub"
 description: "Automatically summarize long GitHub issues when /summarize-issue is commented"
 inputs:
   GITHUB_TOKEN:

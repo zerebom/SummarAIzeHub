@@ -22,16 +22,6 @@ jobs:
           python-version: "3.9"
           cache: poetry
           cache-dependency-path: poetry.lock
-      # - name: Cache poetry virtualenv
-      #   uses: actions/cache@v3
-      #   id: cache
-      #   with:
-      #     path: ~/.cache/pypoetry
-      #     key: ${{ runner.os }}-python-${{ hashFiles('poetry.lock') }}
-      # - name: Install Poetry
-      #   run: |
-      #     curl -sSL https://install.python-poetry.org | python -
-      #     poetry config virtualenvs.create false
       - name: Install Python library
         run: |
           poetry install --no-interaction

@@ -1,5 +1,7 @@
-# SummarAIzeHub
+# [WIP] SummarAIzeHub
 - [English](README_en.md)
+
+**:warning: 現在挙動確認中です。**
 
 SummarAIzeHub は、GitHub の issue コメントに `/summarize-issue` と記述されたときに、その issue を自動的に要約します。このアクションは、OpenAI の GPT モデルを使用して要約を生成します。
 ## 必要な準備

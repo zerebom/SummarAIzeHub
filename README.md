@@ -1,5 +1,6 @@
 
 # GitHub Issue Summarizer
+- [English](README_en.md)
 
 GitHub Issue Summarizer は、GitHub の issue コメントに `/summarize-issue` と記述されたときに、その issue を自動的に要約します。このアクションは、OpenAI の GPT モデルを使用して要約を生成します。
 

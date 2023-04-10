@@ -10,24 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install Poetry
-        run: |
-          pipx install poetry
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: zerebom/SummarAIzeHub@v1.0.0
         with:
-          python-version: "3.9"
-          cache: poetry
-          cache-dependency-path: poetry.lock
-      - name: Install Python library
-        run: |
-          poetry install --no-interaction
-
-      - name: Run summarizer
-        run: poetry run python src/main.py "${{ github.event.repository.full_name }}" "${{ github.event.issue.number }}" "${{ github.event.comment.id }}" "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
-        env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

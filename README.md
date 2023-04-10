@@ -23,33 +23,20 @@ on:
 
 jobs:
   summarize_issue:
-    if: contains(github.event.comment.body, '/summarize-issue')
+    if: startsWith(github.event.comment.body, '/summarize-issue')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: zerebom/SummarAIzeHub@v1.0.0
         with:
-          python-version: "3.9"
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry
-          poetry install
-
-      - name: Run summarizer
-        uses: your-username/gh-issue-summarizer@main
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
 ```
 
 `your-username` を、アクションがホストされている GitHub ユーザ名に置き換えてください。
 
-これで、GitHub Issue Summarizer がリポジトリにインストールされました。コメントに `/summarize-issue` が含まれると、要約が自動的に生成されます。
+これで、SummarAIzeHub がリポジトリにインストールされました。コメントに `/summarize-issue` が含まれると、要約が自動的に生成されます。
 
 ## カスタムプロンプトテンプレートの使用
 

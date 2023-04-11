@@ -34,5 +34,5 @@ runs:
       shell: bash
       run: poetry run python src/main.py "${{ github.event.repository.full_name }}" "${{ github.event.issue.number }}" "${{ github.event.comment.id }}" "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
       env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        GITHUB_TOKEN: ${{ inputs.PERSONAL_ACCESS_TOKEN }}
+        OPENAI_API_KEY: ${{ inputs.OPENAI_API_KEY }}

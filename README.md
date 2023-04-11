@@ -1,8 +1,11 @@
-# [WIP] SummarAIzeHub
+# SummarAIzeHub
 - [English README](README_en.md)
 
 
 SummarAIzeHub は、GitHub の issue コメントに `/summarize-issue` と記述されたときに、その issue を自動的に要約します。このアクションは、OpenAI の GPT モデルを使用して要約を生成します。
+
+[利用例](https://github.com/zerebom/SummarAIzeHub/issues/2#issuecomment-1502826845)
+
 ## 必要な準備
 
 1. OpenAI API へのアクセスが必要です。まず、[OpenAI にサインアップ](https://platform.openai.com/account/api-keys)して API キーを取得してください。

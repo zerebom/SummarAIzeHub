@@ -14,6 +14,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: checkout
+      uses: actions/checkout@v3
+
     - name: Install Poetry
       shell: bash
       run: |

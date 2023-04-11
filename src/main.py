@@ -24,7 +24,6 @@ def main(repo_name, issue_number, comment_id, token):
     comments_section = ""
     for comment in comments:
         comments_section += f"コメント（{comment.user.login}、投稿日：{comment.created_at.strftime('%Y-%m-%d')}）：\n{comment.body}\n\n"
-    comments_section = comments_section[:3500]
 
     with open("./templates/prompt_template.txt", "r") as f:
         prompt_template = f.read()
@@ -32,6 +31,7 @@ def main(repo_name, issue_number, comment_id, token):
     prompt = prompt_template.format(
         issue_title=issue.title, comments_section=comments_section
     )
+    prompt = prompt[:2000]
     print(prompt)
     summarized_text = summarize_text(prompt)
 

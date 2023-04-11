@@ -7,7 +7,7 @@ SummarAIzeHub は、GitHub の issue コメントに `/summarize-issue` と記�
 ## 必要な準備
 
 1. OpenAI API へのアクセスが必要です。まず、[OpenAI にサインアップ](https://platform.openai.com/account/api-keys)して API キーを取得してください。
-2. GitHub のリポジトリのシークレットに `OPENAI_API_KEY` と `GITHUB_TOKEN` を追加します。`OPENAI_API_KEY` は前の手順で取得したものです。`GITHUB_TOKEN` には、`${{ secrets.GITHUB_TOKEN }}` を使用してください。
+2. GitHub のリポジトリのシークレットに `OPENAI_API_KEY` と `PERSONAL_ACCESS_TOKEN` を追加します。`OPENAI_API_KEY` は前の手順で取得したものです。`PERSONAL_ACCESS_TOKEN` には、`${{ secrets.PERSONAL_ACCESS_TOKEN }}` を使用してください。
 
 ## インストール方法
 
@@ -29,7 +29,7 @@ jobs:
       - name: Checkout code
         uses: zerebom/SummarAIzeHub@v1.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 ```
@@ -44,7 +44,7 @@ jobs:
 
 ```yaml
 with:
-  github_token: ${{ secrets.GITHUB_TOKEN }}
+  PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   openai_api_key: ${{ secrets.OPENAI_API_KEY }}
   prompt_template_path: 'path/to/your/custom_template.txt'
 ```

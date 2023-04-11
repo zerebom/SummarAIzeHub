@@ -34,12 +34,12 @@ jobs:
       - name: Run SummarAIzeHub
         uses: your-username/summarAIzeHub@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 ```
 
 2. Create the following secrets in your repository:
-  - `GITHUB_TOKEN`: A personal access token with repo scope.
+  - `PERSONAL_ACCESS_TOKEN`: A personal access token with repo scope.
   - `OPENAI_API_KEY`: Your OpenAI API key to access the AI language model.
 
 3. Whenever you or someone else comments `/summarize-issue` on an issue, the SummarAIzeHub action will be triggered and summarize the issue using an advanced AI language model.

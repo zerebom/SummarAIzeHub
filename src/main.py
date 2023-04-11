@@ -8,12 +8,12 @@ from summarizer.summarizer import summarize_text
 
 def main(repo_name, issue_number, comment_id, token):
     # 環境変数からAPIキーとリポジトリ情報を取得
-    github_token = os.getenv("GITHUB_TOKEN") or token
+    PERSONAL_ACCESS_TOKEN = os.getenv("PERSONAL_ACCESS_TOKEN") or token
     repo_name = os.getenv("GITHUB_REPOSITORY") or repo_name
     issue_number = os.getenv("GITHUB_ISSUE_NUMBER") or issue_number
 
     # GitHubクライアントの作成
-    github_client = Github(github_token)
+    github_client = Github(PERSONAL_ACCESS_TOKEN)
     repo = github_client.get_repo(repo_name)
     issue = repo.get_issue(number=int(issue_number))
 

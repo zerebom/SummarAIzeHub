@@ -35,7 +35,7 @@ def main(repo_name, issue_number, comment_id, token):
     summarized_text = summarize_text(prompt)
 
     # 要約をIssueにコメントとして追加
-    issue.create_comment(f"## Summary of Comments\n\n{summarized_text}")
+    issue.create_comment(f"## 発言者と発言日時\n\n{summarized_text}")
 
 
 if __name__ == "__main__":

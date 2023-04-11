@@ -31,7 +31,7 @@ def main(repo_name, issue_number, comment_id, token):
     prompt = prompt_template.format(
         issue_title=issue.title, comments_section=comments_section
     )
-    prompt = prompt[:3000]
+    prompt = prompt[:4000]
     print(prompt)
     summarized_text = summarize_text(prompt)
 

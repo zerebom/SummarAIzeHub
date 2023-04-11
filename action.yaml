@@ -1,5 +1,5 @@
 name: "SummarAIzeHub"
-description: "SummarAIzeHub: An AI-powered GitHub Action to automatically summarize long issues when prompted with “/summarize-issue” in a comment."
+description: "Automatically summarize long GitHub issues when /summarize-issue is commente"
 inputs:
   PERSONAL_ACCESS_TOKEN:
     description: "GitHub token to authenticate and interact with the GitHub API"

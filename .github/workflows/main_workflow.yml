@@ -11,7 +11,7 @@ jobs:
     name: Checkout code & SummarAIze
     steps:
       - uses: actions/checkout@v3
-      - uses: zerebom/SummarAIzeHub@dev
+      - uses: zerebom/SummarAIzeHub@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

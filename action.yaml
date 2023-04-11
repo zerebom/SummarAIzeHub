@@ -11,6 +11,9 @@ inputs:
     description: "Path to the prompt template file"
     required: false
     default: "templates/prompt_template.txt"
+branding:
+  icon: 'book'
+  color: 'yellow'
 runs:
   using: "composite"
   steps:

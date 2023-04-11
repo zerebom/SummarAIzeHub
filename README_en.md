@@ -58,4 +58,4 @@ Using a custom template allows you to freely customize the format and questions 
 
 ## License
 
-This project is released under the MIT License. For more information, see the [LICENSE](LICENSE) file.
+This project is released under the Apache License 2.0 License. For more information, see the [LICENSE](LICENSE) file.

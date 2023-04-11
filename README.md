@@ -1,7 +1,6 @@
 # [WIP] SummarAIzeHub
 - [English](README_en.md)
 
-**:warning: 現在挙動確認中です。**
 
 SummarAIzeHub は、GitHub の issue コメントに `/summarize-issue` と記述されたときに、その issue を自動的に要約します。このアクションは、OpenAI の GPT モデルを使用して要約を生成します。
 ## 必要な準備
@@ -25,9 +24,10 @@ jobs:
   summarize_issue:
     if: startsWith(github.event.comment.body, '/summarize-issue')
     runs-on: ubuntu-latest
+    name: Checkout code & SummarAIze
     steps:
-      - name: Checkout code
-        uses: zerebom/SummarAIzeHub@v1.0.0
+      - uses: actions/checkout@v3
+      - uses: zerebom/SummarAIzeHub@main
         with:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

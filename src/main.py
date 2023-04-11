@@ -31,6 +31,8 @@ def main(repo_name, issue_number, comment_id, token):
     prompt = prompt_template.format(
         issue_title=issue.title, comments_section=comments_section
     )
+    # FIXME:4000token以上の要約はエラーになるので、4000文字に切り詰める
+    # 将来的には、要約の精度を上げるために、複数回の要約を行いたい
     prompt = prompt[:4000]
     print(prompt)
     summarized_text = summarize_text(prompt)

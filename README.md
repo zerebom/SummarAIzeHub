@@ -27,7 +27,7 @@ jobs:
       - name: Checkout code
         uses: zerebom/SummarAIzeHub@v1.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 ```

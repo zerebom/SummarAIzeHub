@@ -8,9 +8,10 @@ jobs:
   summarize_issue:
     if: startsWith(github.event.comment.body, '/summarize-issue')
     runs-on: ubuntu-latest
+    name: Checkout code & SummarAIze
     steps:
-      - name: Checkout code
-        uses: zerebom/SummarAIzeHub@dev
+      - uses: actions/checkout@v3
+      - uses: zerebom/SummarAIzeHub@dev
         with:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

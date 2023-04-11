@@ -1,10 +1,16 @@
-# SummarAIzeHub
+# [WIP] SummarAIzeHub
+- [Japanese README](README.md)
 
-SummarAIzeHub is a GitHub Action that uses advanced AI language models to automatically summarize GitHub issues when prompted by a comment containing `/summarize-issue`. This action is designed to make it easier for project maintainers and contributors to get the key points from long, complex issues without having to read through the entire thread.
+SummarAIzeHub automatically summarizes an issue on GitHub when `/summarize-issue` is written in an issue comment. This action generates summaries using OpenAI's GPT model.
+## Prerequisites
 
-## How to use
+1. You need access to the OpenAI API. First, [sign up for OpenAI](https://platform.openai.com/account/api-keys) and obtain an API key.
+2. Add `OPENAI_API_KEY` and `PERSONAL_ACCESS_TOKEN` to your GitHub repository secrets. The `OPENAI_API_KEY` is obtained in the previous step. Use `${{ secrets.PERSONAL_ACCESS_TOKEN }}` for the `PERSONAL_ACCESS_TOKEN`.
 
-1. Add the `SummarAIzeHub` action to your GitHub repository by creating a new workflow file (e.g., `.github/workflows/summarize_issue.yml`) with the following content:
+## Installation
+
+1. Create a `.github/workflows` directory in your repository and create a file named `summarize_issue.yml` within it.
+2. Add the following code to `summarize_issue.yml`:
 
 ```yaml
 name: Summarize Issue
@@ -15,34 +21,41 @@ on:
 
 jobs:
   summarize_issue:
+    if: startsWith(github.event.comment.body, '/summarize-issue')
     runs-on: ubuntu-latest
+    name: Checkout code & SummarAIze
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.9"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry
-          poetry install
-
-      - name: Run SummarAIzeHub
-        uses: your-username/summarAIzeHub@v1
+      - uses: actions/checkout@v3
+      - uses: zerebom/SummarAIzeHub@main
         with:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
 ```
 
-2. Create the following secrets in your repository:
-  - `PERSONAL_ACCESS_TOKEN`: A personal access token with repo scope.
-  - `OPENAI_API_KEY`: Your OpenAI API key to access the AI language model.
+Replace `your-username` with the GitHub username hosting the action.
 
-3. Whenever you or someone else comments `/summarize-issue` on an issue, the SummarAIzeHub action will be triggered and summarize the issue using an advanced AI language model.
+Now, SummarAIzeHub is installed in your repository. When a comment contains `/summarize-issue`, a summary will be automatically generated.
 
-For more information and customization options, please visit the [SummarAIzeHub GitHub repository](https://github.com/zerebom/SummarAIzeHub).
+## Using Custom Prompt Templates
 
+By default, the prompt template is stored in `path/to/default/prompt_template.txt`. If you want to use a custom prompt template, add `prompt_template_path` to the `with` section as follows:
+
+```yaml
+with:
+  PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+  openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+  prompt_template_path: 'path/to/your/custom_template.txt'
+```
+
+Using a custom template allows you to freely customize the format and questions of the summary. The prompt template is text sent to the GPT model along with the issue information, allowing GPT to generate an appropriate summary.
+
+## Notes
+
+- This action is triggered only when the comment contains `/summarize-issue`. It will not be executed for other comments.
+- Summaries are automatically generated and may not be perfect. Corrections may be necessary for the summaries.
+- Manage your OpenAI API key properly, as it is associated with costs for API requests. Storing the API key in the repository's secrets ensures that the key will not be leaked to other users.
+
+## License
+
+This project is released under the MIT License. For more information, see the [LICENSE](LICENSE) file.

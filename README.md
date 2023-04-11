@@ -1,5 +1,5 @@
 # [WIP] SummarAIzeHub
-- [English](README_en.md)
+- [English README](README_en.md)
 
 
 SummarAIzeHub は、GitHub の issue コメントに `/summarize-issue` と記述されたときに、その issue を自動的に要約します。このアクションは、OpenAI の GPT モデルを使用して要約を生成します。
@@ -33,8 +33,6 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 ```
-
-`your-username` を、アクションがホストされている GitHub ユーザ名に置き換えてください。
 
 これで、SummarAIzeHub がリポジトリにインストールされました。コメントに `/summarize-issue` が含まれると、要約が自動的に生成されます。
 

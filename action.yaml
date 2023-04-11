@@ -23,8 +23,8 @@ runs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.9"
-        cache: poetry
-        cache-dependency-path: poetry.lock
+        # cache: poetry
+        # cache-dependency-path: poetry.lock
     - name: Install Python library
       run: |
         poetry install --no-interaction

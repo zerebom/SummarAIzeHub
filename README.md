@@ -1,20 +1,16 @@
 # SummarAIzeHub
-- [English README](README_en.md)
+- [Japanese README](README.md)
 
+SummarAIzeHub automatically summarizes an issue on GitHub when `/summarize-issue` is written in an issue comment. This action generates summaries using OpenAI's GPT model.
+## Prerequisites
 
-SummarAIzeHub は、GitHub の issue コメントに `/summarize-issue` と記述されたときに、その issue を自動的に要約します。このアクションは、OpenAI の GPT モデルを使用して要約を生成します。
+1. You need access to the OpenAI API. First, [sign up for OpenAI](https://platform.openai.com/account/api-keys) and obtain an API key.
+2. Add `OPENAI_API_KEY` and `PERSONAL_ACCESS_TOKEN` to your GitHub repository secrets. The `OPENAI_API_KEY` is obtained in the previous step. Use `${{ secrets.PERSONAL_ACCESS_TOKEN }}` for the `PERSONAL_ACCESS_TOKEN`.
 
-[利用例](https://github.com/zerebom/SummarAIzeHub/issues/2#issuecomment-1502826845)
+## Installation
 
-## 必要な準備
-
-1. OpenAI API へのアクセスが必要です。まず、[OpenAI にサインアップ](https://platform.openai.com/account/api-keys)して API キーを取得してください。
-2. GitHub のリポジトリのシークレットに `OPENAI_API_KEY` と `PERSONAL_ACCESS_TOKEN` を追加します。`OPENAI_API_KEY` は前の手順で取得したものです。`PERSONAL_ACCESS_TOKEN` には、`${{ secrets.PERSONAL_ACCESS_TOKEN }}` を使用してください。
-
-## インストール方法
-
-1. リポジトリに `.github/workflows` ディレクトリを作成し、その中に `summarize_issue.yml` という名前のファイルを作成します。
-2. 以下のコードを `summarize_issue.yml` に追加します。
+1. Create a `.github/workflows` directory in your repository and create a file named `summarize_issue.yml` within it.
+2. Add the following code to `summarize_issue.yml`:
 
 ```yaml
 name: Summarize Issue
@@ -37,11 +33,13 @@ jobs:
 
 ```
 
-これで、SummarAIzeHub がリポジトリにインストールされました。コメントに `/summarize-issue` が含まれると、要約が自動的に生成されます。
+Replace `your-username` with the GitHub username hosting the action.
 
-## カスタムプロンプトテンプレートの使用
+Now, SummarAIzeHub is installed in your repository. When a comment contains `/summarize-issue`, a summary will be automatically generated.
 
-デフォルトでは、プロンプトテンプレートは `path/to/default/prompt_template.txt` に格納されています。カスタムプロンプトテンプレートを使用する場合は、以下のように `with` セクションに `prompt_template_path` を追加してください。
+## Using Custom Prompt Templates
+
+By default, the prompt template is stored in `path/to/default/prompt_template.txt`. If you want to use a custom prompt template, add `prompt_template_path` to the `with` section as follows:
 
 ```yaml
 with:
@@ -50,14 +48,14 @@ with:
   prompt_template_path: 'path/to/your/custom_template.txt'
 ```
 
-カスタムテンプレートを使用すると、要約の形式や質問などを自由にカスタマイズできます。プロンプトテンプレートは、issue の情報とともに GPT モデルに送信されるテキストです。これにより、GPT が適切な要約を生成できます。
+Using a custom template allows you to freely customize the format and questions of the summary. The prompt template is text sent to the GPT model along with the issue information, allowing GPT to generate an appropriate summary.
 
-## 注意事項
+## Notes
 
-- このアクションは、コメントが `/summarize-issue` を含む場合にのみトリガーされます。その他のコメントでは実行されません。
-- 要約は自動生成されるため、完璧ではない場合があります。要約に対して修正が必要な場合があります。
-- OpenAI API キーは、API へのリクエストに関連するコストが発生するため、適切に管理してください。リポジトリのシークレットに API キーを格納することで、キーが他のユーザーに漏れることはありません。
+- This action is triggered only when the comment contains `/summarize-issue`. It will not be executed for other comments.
+- Summaries are automatically generated and may not be perfect. Corrections may be necessary for the summaries.
+- Manage your OpenAI API key properly, as it is associated with costs for API requests. Storing the API key in the repository's secrets ensures that the key will not be leaked to other users.
 
-## ライセンス
+## License
 
-このプロジェクトは Apache License 2.0 の下で公開されています。詳細については、[LICENSE](LICENSE) ファイルを参照してください。
+This project is released under the Apache License. For more information, see the [LICENSE](LICENSE) file.

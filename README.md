@@ -1,5 +1,5 @@
 # SummarAIzeHub
-- [Japanese README](README.md)
+- [Japanese README](README_ja.md)
 
 SummarAIzeHub automatically summarizes an issue on GitHub when `/summarize-issue` is written in an issue comment. This action generates summaries using OpenAI's GPT model.
 ## Prerequisites
